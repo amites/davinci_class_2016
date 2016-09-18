@@ -1,9 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from hello_world.models import Rating, StuffToRate
+
 
 def index(request):
-    display = 'Hello World'
+    display = ''
+    objs = StuffToRate.objects.all()
+    obj = objs[0]
+    display += '{} - {} - {}'.format(obj.title, obj.color, obj.get_rating())
     return HttpResponse(display)
 
 

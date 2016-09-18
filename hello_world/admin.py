@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from hello_world.models import Rating, StuffToRate
+
+
+admin.site.register(Rating)
+admin.site.register(StuffToRate)
