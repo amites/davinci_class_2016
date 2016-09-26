@@ -1,0 +1,14 @@
+ VIRTUALENV/
+  - bin/
+    - activate
+    - python
+  - PROJECT_NAME/
+    - manage.py
+    - db.sqlite3
+    - PROJECT_NAME/
+        - urls.py
+        - settings.py
+        - wsgi.py
+  - include/
+  - lib/
+  - share/

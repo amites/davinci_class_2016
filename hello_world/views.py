@@ -9,7 +9,12 @@ def index(request):
     objs = StuffToRate.objects.all()
     obj = objs[0]
     display += '{} - {} - {}'.format(obj.title, obj.color, obj.get_rating())
-    return HttpResponse(display)
+    # return HttpResponse(display)
+    context = {
+        'objs': objs,
+        # 'obj': obj,
+    }
+    return render(request, 'base.html', context)
 
 
 def hello_name(request):
