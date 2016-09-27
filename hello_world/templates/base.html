@@ -29,17 +29,33 @@
 
 <h1>This is my heading</h1>
 <table>
+    <tr>
+        <td>{{ giraffe.title }}</td>
+        <td>{{ giraffe.color }}</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
     {% for obj in objs %}
         <tr>
             <td>{{ obj.id }}</td>
             <td>{{ obj.title }}</td>
             <td>{{ obj.color }}</td>
+            <td>{{ obj.get_rating }}</td>
         </tr>
     {% endfor %}
     <tr>
         <td>Column 1</td>
-        <td>Column 2</td>
+        <td></td>
         <td>Column 3</td>
+        <td></td>
     </tr>
 </table>
 </body>
