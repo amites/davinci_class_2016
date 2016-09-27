@@ -27,6 +27,13 @@
   <li role="presentation"><a href="#">Messages</a></li>
 </ul>
 
+<h1>My Form</h1>
+<form method="post">
+    {{ form }}
+    <input type="submit" value="Save">
+    {% csrf_token %}
+</form>
+
 <h1>This is my heading</h1>
 <table>
     <tr>
