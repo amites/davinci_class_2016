@@ -43,3 +43,36 @@ class Rating(models.Model):
                                                  self.stuff.color)
 
 
+#####################
+
+
+class Customer(models.Model):
+    human_first_name = models.CharField(max_length=250)
+    human_last_name = models.CharField(max_length=250)
+
+
+class Pet(models.Model):
+    name = models.CharField(max_length=200, default='Katie')
+    customer = models.ForeignKey(Customer, default=1)
+
+    def __unicode__(self):
+        return 'Pet Name : {} belongs to : {} {}'.format(
+            self.name, self.customer.human_first_name,
+            self.customer.human_last_name)
+
+    def __str__(self):
+        return self.__unicode__()
+
+
+class Service(models.Model):
+    name = models.CharField(max_length=250)
+
+
+class Order(models.Model):
+    customer = models.ForeignKey(Customer)
+    service = models.ManyToManyField(Service)
+
+
+class OrderToService(models.Model):
+    order = models.ForeignKey(Order)
+    service = models.ForeignKey(Service)
