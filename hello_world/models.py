@@ -53,6 +53,7 @@ class Customer(models.Model):
 
 class Pet(models.Model):
     name = models.CharField(max_length=200, default='Katie')
+    breed = models.CharField(max_length=200)
     customer = models.ForeignKey(Customer, default=1)
 
     def __unicode__(self):
@@ -73,6 +74,9 @@ class Order(models.Model):
     service = models.ManyToManyField(Service)
 
 
-class OrderToService(models.Model):
-    order = models.ForeignKey(Order)
-    service = models.ForeignKey(Service)
+# class OrderToService(models.Model):
+#     """
+#     Example of how a ManyToMany field works at the database level.
+#     """
+#     order = models.ForeignKey(Order)
+#     service = models.ForeignKey(Service)
