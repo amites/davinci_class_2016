@@ -19,5 +19,5 @@ from hello_world import urls as hello_world_urls
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^hello_world/', include(hello_world_urls)),
+    url(r'^hello_world/', include(hello_world_urls, namespace='hello_world')),
 ]

@@ -49,6 +49,10 @@ class Rating(models.Model):
 class Customer(models.Model):
     human_first_name = models.CharField(max_length=250)
     human_last_name = models.CharField(max_length=250)
+    mileage = models.IntegerField(null=True, blank=True)
+
+    def __unicode__(self):
+        return '{} {}'.format(self.human_first_name, self.human_last_name)
 
 
 class Pet(models.Model):
@@ -68,8 +72,12 @@ class Pet(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=250)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Order(models.Model):
+    # customer should be linked to Pet in production
     customer = models.ForeignKey(Customer)
     service = models.ManyToManyField(Service)
 

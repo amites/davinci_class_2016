@@ -28,7 +28,8 @@
 </ul>
 
 <h1>My Search Form</h1>
-<form method="post">
+<form method="post" action="{% url 'hello_world:hello' %}">
+{#<form method="post" action="/hello_world/hello">#}
     {{ form }}
     <input type="submit" value="Search">
     {% csrf_token %}
