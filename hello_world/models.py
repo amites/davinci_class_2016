@@ -35,6 +35,8 @@ class StuffToRate(models.Model):
 class Rating(models.Model):
     stuff = models.ForeignKey(StuffToRate)
     rating = models.IntegerField(default=1, choices=RATING_VALUES)
+    multi_rating = models.CommaSeparatedIntegerField(null=True, blank=True,
+                                                     max_length=250)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 

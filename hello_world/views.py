@@ -7,7 +7,12 @@ from hello_world.models import Rating, StuffToRate
 
 def index(request):
     if request.method == 'POST':
-        form = RatingForm(request.POST)
+        data = dict(request.POST)
+        multi_value = data.pop('multi_rating')
+        print '---------\n {}\n ----------'.format(str(data))
+
+        form = RatingForm(data)
+
         if form.is_valid():
             form.save()
     else:
