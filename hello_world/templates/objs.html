@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ block.super }}
+
+    <!-- I'm objs content -->
+
+    <h1>My Form</h1>
+    <form method="post">
+        {{ form }}
+        <input type="submit" value="Save">
+        {% csrf_token %}
+    </form>
+{% endblock %}

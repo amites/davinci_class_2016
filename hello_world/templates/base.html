@@ -21,49 +21,20 @@
     </style>
 </head>
 <body>
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
-</ul>
 
-<h1>My Form</h1>
-<form method="post">
-    {{ form }}
-    <input type="submit" value="Save">
-    {% csrf_token %}
-</form>
+{% block menu %}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#">Home</a></li>
+      <li role="presentation"><a href="#">Profile</a></li>
+      <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
+{% endblock %}
 
-<h1>This is my heading</h1>
-<table>
-    <tr>
-        <td>{{ giraffe.title }}</td>
-        <td>{{ giraffe.color }}</td>
-        <td></td>
-        <td></td>
-    </tr>
 
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+{% block content %}
+    <!-- I'm base content -->
 
-    {% for obj in objs %}
-        <tr>
-            <td>{{ obj.id }}</td>
-            <td>{{ obj.title }}</td>
-            <td>{{ obj.color }}</td>
-            <td>{{ obj.get_rating }}</td>
-        </tr>
-    {% endfor %}
-    <tr>
-        <td>Column 1</td>
-        <td></td>
-        <td>Column 3</td>
-        <td></td>
-    </tr>
-</table>
+{% endblock %}
+
 </body>
 </html>

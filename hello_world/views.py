@@ -19,7 +19,7 @@ def index(request):
         'giraffe': thing,
         'form': form,
     }
-    return render(request, 'base.html', context)
+    return render(request, 'objs_list.html', context)
 
 
 def hello_name(request):
