@@ -7,6 +7,16 @@ from django.db import models
 
 RATING_VALUES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5), )
 
+DAYS_OF_WEEK = (
+    ('sun', 'Sunday'),
+    ('mon', 'Monday'),
+    ('tues', 'Tuesday'),
+    ('wed', 'Wednesday'),
+    ('thurs', 'Thursday'),
+    # fri
+    # sat
+)
+
 
 class StuffToRate(models.Model):
     """
@@ -43,3 +53,50 @@ class Rating(models.Model):
                                                  self.stuff.color)
 
 
+#####################
+
+
+class Customer(models.Model):
+    human_first_name = models.CharField(max_length=250)
+    human_last_name = models.CharField(max_length=250)
+    mileage = models.IntegerField(null=True, blank=True)
+
+    def __unicode__(self):
+        return '{} {}'.format(self.human_first_name, self.human_last_name)
+
+
+class Pet(models.Model):
+    name = models.CharField(max_length=200, default='Katie')
+    breed = models.CharField(max_length=200)
+    # customer = models.ForeignKey(Customer, None, related_name='thing', default=1, this_is_my_var='hello')
+    customer = models.ForeignKey(Customer, default=1)
+
+    def __unicode__(self):
+        return 'Pet Name : {} belongs to : {} {}'.format(
+            self.name, self.customer.human_first_name,
+            self.customer.human_last_name)
+
+    def __str__(self):
+        return self.__unicode__()
+
+
+class Service(models.Model):
+    name = models.CharField(max_length=250)
+
+    def __unicode__(self):
+        return self.name
+
+
+class Order(models.Model):
+    # customer should be linked to Pet in production
+    week_day = models.CharField(max_length=20, choices=DAYS_OF_WEEK)
+    customer = models.ForeignKey(Customer)
+    service = models.ManyToManyField(Service)
+
+
+# class OrderToService(models.Model):
+#     """
+#     Example of how a ManyToMany field works at the database level.
+#     """
+#     order = models.ForeignKey(Order)
+#     service = models.ForeignKey(Service)
