@@ -13,7 +13,11 @@ def index(request):
     # else:
     #     form = RatingForm()
 
+    # import ipdb
+    # ipdb.set_trace()
+
     if request.method == 'POST':
+
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
@@ -53,6 +57,7 @@ def hello_name(request):
     # return HttpResponse(display)
 
     if request.method == 'POST':
+
         customer_id = request.POST['customer']
         cust = Customer.objects.get(id=customer_id)
         data = {

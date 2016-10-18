@@ -1,6 +1,6 @@
 from django import forms
 
-from hello_world.models import Customer, Pet, Rating, Order
+from hello_world.models import Customer, Pet, Rating, Order, Service
 
 
 class RatingForm(forms.ModelForm):
@@ -18,9 +18,14 @@ class PetSearchForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
+    service = forms.ModelMultipleChoiceField(
+        queryset=Service.objects.all(),
+        widget=forms.CheckboxSelectMultiple()
+    )
+
     class Meta:
         model = Order
-        fields = ['customer', 'service', ]
+        fields = ['customer', 'service', 'week_day']
 
 
 class NewOrderForm(forms.Form):
