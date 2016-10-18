@@ -7,6 +7,16 @@ from django.db import models
 
 RATING_VALUES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5), )
 
+DAYS_OF_WEEK = (
+    ('sun', 'Sunday'),
+    ('mon', 'Monday'),
+    ('tues', 'Tuesday'),
+    ('wed', 'Wednesday'),
+    ('thurs', 'Thursday'),
+    # fri
+    # sat
+)
+
 
 class StuffToRate(models.Model):
     """
@@ -58,6 +68,7 @@ class Customer(models.Model):
 class Pet(models.Model):
     name = models.CharField(max_length=200, default='Katie')
     breed = models.CharField(max_length=200)
+    # customer = models.ForeignKey(Customer, None, related_name='thing', default=1, this_is_my_var='hello')
     customer = models.ForeignKey(Customer, default=1)
 
     def __unicode__(self):
@@ -78,6 +89,7 @@ class Service(models.Model):
 
 class Order(models.Model):
     # customer should be linked to Pet in production
+    week_day = models.CharField(max_length=20, choices=DAYS_OF_WEEK)
     customer = models.ForeignKey(Customer)
     service = models.ManyToManyField(Service)
 
